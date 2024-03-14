@@ -1,10 +1,13 @@
 import Image from "next/image";
 import HomeGrid from "./_component/HomeGrid";
 import { Separator } from "@/components/ui/separator";
+import { aboutMe, expertise } from "@/lib/aboutMeInfo";
+import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";
+import { projects } from "@/components/projects-ui";
 
 export default function Home() {
   return (
-    <div className="p-24 max-w-screen-sm lg:max-w-screen-sm mx-auto ">
+    <div className="relative p-24 max-w-screen-sm lg:max-w-screen-sm mx-auto ">
       <div className="flex flex-col gap-8">
         <div className="flex ">
           <div className="flex gap-4 items-center">
@@ -32,30 +35,35 @@ export default function Home() {
           <h2 className="text-base font-medium traacking-wide"></h2>
         </div>
         <HomeGrid title="About me !">
-          <p className="text-muted-foreground">
-            Hey there! I&apos;m Haitar. With over 3 years of hands-on experience
-            in both front-end and backend development, I&apos;ve been tinkering
-            with websites to make them look good and work seamlessly. I
-            didn&apos;t start with a formal education in this field; I&apos;ve
-            learned the ropes through trial and error, lots of Google searches,
-            and endless cups of coffee. My journey as a self-taught developer
-            has been filled with challenges, but it&apos;s taught me the value
-            of persistence and continuous learning. I&apos;ve had the pleasure
-            of working with some amazing clients who&apos;ve left me glowing
-            feedback.
-          </p>
+          <div className="text-muted-foreground">{aboutMe}</div>
           <Separator />
         </HomeGrid>
         {/* Expertise */}
         <HomeGrid title="Expertise ">
-          <p className="text-muted-foreground">
-            -javascript -typescript -tailwindCss -react -nextJs -mongoDB
-            -postgresql -nodeJs -expressJs -prisma -drizzle -supabase
-          </p>
+          <ul className="text-muted-foreground list-disc">
+            {expertise.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
           <Separator />
         </HomeGrid>
-        {/* Projects */}
 
+        {/* Projects */}
+        <HomeGrid title="Projects">
+          {/* <div className="grid lg:grid-cols-2 gap-2"> */}
+          {projects.map((item) => (
+            <DirectionAwareHover
+              className={item.className}
+              key={item.id}
+              imageUrl={item.thumbnail[0]}
+            >
+              {item.content}
+            </DirectionAwareHover>
+          ))}
+          {/* </div> */}
+        </HomeGrid>
+
+        {/* </HomeGrid> */}
         {/* Blogs */}
 
         {/* Social media */}

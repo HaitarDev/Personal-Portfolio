@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-background font-sans antialiased ",
           fontSans.variable
         )}
       >
@@ -31,7 +31,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen flex">
+          <div className="min-h-screen flex relative">
             <Sidebar />
             <main className="min-h-screen w-full">{children}</main>
           </div>
