@@ -4,12 +4,13 @@ import Link from "next/link";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ModeToggle } from "./toggle-theme";
 
 function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen border-r border-gray-200 w-14 flex flex-col items-center justify-center gap-8">
+    <div className="fixed  top-0 left-0 right-0 bottom-0 min-h-screen border-r border-gray-200 w-14 flex flex-col items-center justify-center gap-8">
       {navItems.map((item) => (
         <div key={item.name}>
           <HoverCard>
@@ -32,6 +33,7 @@ function Sidebar() {
           </HoverCard>
         </div>
       ))}
+      <ModeToggle />
     </div>
   );
 }
