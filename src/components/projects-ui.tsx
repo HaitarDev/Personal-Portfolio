@@ -56,7 +56,7 @@ interface Project {
   id: number;
   content: ReactNode | string;
   className: string;
-  thumbnail: string[] | string;
+  thumbnail: string[];
 }
 
 export const projects: Project[] = [
@@ -64,24 +64,24 @@ export const projects: Project[] = [
     id: 1,
     content: <ProjectOne />,
     className: "md:col-span-2",
-    thumbnail: ["/13.jpg", "noise.png", "/13.jpg"],
+    thumbnail: ["/13.jpg", "/noise.png", "/13.jpg"],
   },
   {
     id: 2,
     content: <ProjectTwo />,
     className: "col-span-1",
-    thumbnail: ["/13.jpg", "noise.png", "/13.jpg"],
+    thumbnail: ["/13.jpg", "/noise.png", "/13.jpg"],
   },
   {
     id: 3,
     content: <ProjectThree />,
     className: "col-span-1",
-    thumbnail: ["/13.jpg", "noise.png", "/13.jpg"],
+    thumbnail: ["/13.jpg", "/noise.png", "/13.jpg"],
   },
   {
     id: 4,
     content: <ProjectFour />,
     className: "md:col-span-2",
-    thumbnail: ["/13.jpg", "noise.png", "/13.jpg"],
+    thumbnail: ["/13.jpg", "/noise.png", "/13.jpg"],
   },
 ];

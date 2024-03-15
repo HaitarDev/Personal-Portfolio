@@ -2,8 +2,8 @@ import Image from "next/image";
 import HomeGrid from "./_component/HomeGrid";
 import { Separator } from "@/components/ui/separator";
 import { aboutMe, expertise } from "@/lib/aboutMeInfo";
-import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";
-import { projects } from "@/components/projects-ui";
+
+import HomeShowProjects from "./_component/HomeShowProjects";
 
 export default function Home() {
   return (
@@ -50,17 +50,7 @@ export default function Home() {
 
         {/* Projects */}
         <HomeGrid title="Projects">
-          {/* <div className="grid lg:grid-cols-2 gap-2"> */}
-          {projects.map((item) => (
-            <DirectionAwareHover
-              className={item.className}
-              key={item.id}
-              imageUrl={item.thumbnail[0]}
-            >
-              {item.content}
-            </DirectionAwareHover>
-          ))}
-          {/* </div> */}
+          <HomeShowProjects />
         </HomeGrid>
 
         {/* </HomeGrid> */}
