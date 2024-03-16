@@ -49,8 +49,9 @@ export default function Home() {
         </HomeGrid>
 
         {/* Projects */}
-        <HomeGrid title="Projects">
+        <HomeGrid title="Random projects">
           <HomeShowProjects />
+          <Separator />
         </HomeGrid>
 
         {/* </HomeGrid> */}

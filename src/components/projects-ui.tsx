@@ -52,7 +52,7 @@ export const ProjectFour = () => {
   );
 };
 
-interface Project {
+export interface Project {
   id: number;
   content: ReactNode | string;
   className: string;
