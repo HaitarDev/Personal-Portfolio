@@ -25,8 +25,8 @@ const formSchema = z.object({
 });
 
 function SignInPage() {
-  const router = useRouter();
   const session = useSession();
+  if (session.status === "authenticated") redirect("/admin/posts");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,10 +45,8 @@ function SignInPage() {
 
     if (!res?.ok) return alert("Invalid email or password");
 
-    router.push("/");
+    redirect("/admin/posts");
   }
-
-  if (session.status === "authenticated") redirect("/");
 
   return (
     <div className="min-h-screen  flex items-center justify-center">

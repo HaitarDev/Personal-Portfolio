@@ -99,18 +99,20 @@ enum Role {
 
 // Blogs 
 model Post {
-  id         Int        @id @default(autoincrement())
+  id         String        @id @default(cuid())
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   title      String     @db.VarChar(200)
-  content   String      @db.Text
+  content   String?     @db.Text
   imageUrl    String?
   published  Boolean    @default(false)
-  categories Category[]
+
+  tags Tag[]
 }
 
-model Category {
-  id    Int    @id @default(autoincrement())
+model Tag {
+  id    String    @id @default(cuid())
   name  String
   posts Post[]
 }
+
