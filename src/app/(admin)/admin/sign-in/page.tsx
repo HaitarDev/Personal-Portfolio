@@ -26,8 +26,7 @@ const formSchema = z.object({
 
 function SignInPage() {
   const session = useSession();
-  if (session.status === "authenticated") redirect("/admin/posts");
-
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,6 +34,11 @@ function SignInPage() {
       password: "",
     },
   });
+
+  if (session.status === "authenticated") {
+    router.push("/admin/posts");
+    return null;
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const res = await signIn("credentials", {

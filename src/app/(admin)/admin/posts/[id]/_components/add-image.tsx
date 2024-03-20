@@ -60,6 +60,7 @@ function AddImage({ imgUrl, id }: { imgUrl: string | null; id: string }) {
       router.refresh();
     }
   }
+
   return (
     <Card>
       <CardHeader>
