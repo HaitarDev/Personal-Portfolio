@@ -55,7 +55,7 @@ export const createTags = async (tags: string[], postId: string) => {
           data: {
             tags: {
               connect: {
-                name: tag,
+                id: existingTagNamesInTags.id,
               },
             },
           },
