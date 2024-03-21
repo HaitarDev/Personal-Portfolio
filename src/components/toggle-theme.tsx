@@ -15,7 +15,18 @@ import {
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+
+  React.useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-color-mode", "dark");
+    }
+    if (theme === "white") {
+      document.documentElement.setAttribute("data-color-mode", "white");
+    }
+
+    return () => document.documentElement.removeAttribute("data-color-mode");
+  }, [theme]);
 
   return (
     <HoverCard>
@@ -29,10 +40,28 @@ export function ModeToggle() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => setTheme("light")}>
+            <DropdownMenuItem
+              onClick={() => {
+                document.documentElement.setAttribute(
+                  "data-color-mode",
+                  "light"
+                );
+
+                setTheme("light");
+              }}
+            >
               Light
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setTheme("dark")}>
+            <DropdownMenuItem
+              onClick={() => {
+                document.documentElement.setAttribute(
+                  "data-color-mode",
+                  "white"
+                );
+
+                setTheme("dark");
+              }}
+            >
               Dark
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setTheme("system")}>

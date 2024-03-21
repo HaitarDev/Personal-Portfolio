@@ -8,7 +8,7 @@ import { TitleType } from "../(admin)/admin/posts/post-title/page";
 export const createPost = async (values: TitleType) => {
   try {
     const session = await getServerSession(authOptions);
-    console.log(session);
+
     if (!session?.user.id)
       return {
         success: false,

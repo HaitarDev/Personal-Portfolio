@@ -1,19 +1,9 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AddImage from "./_components/add-image";
 
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import AddContent from "./_components/add-content";
 
 async function PostIDPage({ params }: { params: { id: string } }) {
   const post = await prisma.post.findUnique({
@@ -38,27 +28,7 @@ async function PostIDPage({ params }: { params: { id: string } }) {
           <AddImage imgUrl={post.imageUrl} id={post.id} />
         </TabsContent>
         <TabsContent value="content">
-          <Card>
-            <CardHeader>
-              <CardTitle>Content</CardTitle>
-              <CardDescription>
-                Change your password here. After saving, l be logged out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <Label htmlFor="current">Current password</Label>
-                <Input id="current" type="password" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="new">New password</Label>
-                <Input id="new" type="password" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Save password</Button>
-            </CardFooter>
-          </Card>
+          <AddContent id={post.id} content={post.content} />
         </TabsContent>
       </Tabs>
     </div>

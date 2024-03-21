@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { signIn, useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -49,7 +49,7 @@ function SignInPage() {
 
     if (!res?.ok) return alert("Invalid email or password");
 
-    redirect("/admin/posts");
+    router.push("/admin/posts");
   }
 
   return (
