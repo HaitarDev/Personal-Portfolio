@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -20,6 +19,8 @@ import { useRouter } from "next/navigation";
 import { Form, FormField, FormMessage } from "@/components/ui/form";
 import { createContent } from "@/app/actions/createContent";
 import { useState } from "react";
+
+import rehypeSanitize from "rehype-sanitize";
 
 const formSchema = z.object({
   content: z.string().min(1, "Content is required"),
@@ -66,7 +67,7 @@ function AddContent({ content, id }: { content: string | null; id: string }) {
   return (
     <Card>
       <CardHeader>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center ">
           <div>
             <CardTitle>Content</CardTitle>
             <CardDescription>
@@ -87,7 +88,10 @@ function AddContent({ content, id }: { content: string | null; id: string }) {
                 name="content"
                 render={({ field }) => (
                   <>
-                    <MDEditor {...field} />
+                    <MDEditor
+                      previewOptions={{ rehypePlugins: [[rehypeSanitize]] }}
+                      {...field}
+                    />
                     <FormMessage />
                   </>
                 )}
@@ -99,13 +103,7 @@ function AddContent({ content, id }: { content: string | null; id: string }) {
             </form>
           </Form>
         ) : (
-          <MDEditor.Markdown
-            source={content}
-            style={{
-              padding: "1rem 0.5rem",
-              // background: "rgb(100 116 139 /10%)",
-            }}
-          />
+          <MDEditor.Markdown source={content} />
         )}
       </CardContent>
     </Card>
