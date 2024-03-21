@@ -5,6 +5,7 @@ import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import AddContent from "./_components/add-content";
 import AddCategories from "./_components/add-categories";
+import AddPublish from "./_components/add-publish";
 
 async function PostIDPage({ params }: { params: { id: string } }) {
   const post = await prisma.post.findUnique({
@@ -40,7 +41,7 @@ async function PostIDPage({ params }: { params: { id: string } }) {
           <AddCategories id={post.id} tags={post.tags} />
         </TabsContent>
         <TabsContent value="publish">
-          <AddContent id={post.id} content={post.content} />
+          <AddPublish id={post.id} published={post.published} />
         </TabsContent>
       </Tabs>
     </div>

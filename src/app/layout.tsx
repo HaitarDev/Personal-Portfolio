@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Sidebar from "@/components/Sidebar";
 import SessionAuth from "@/components/session-provider";
 
+import { Toaster } from "@/components/ui/toaster";
+
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
@@ -39,6 +41,7 @@ export default function RootLayout({
             </div>
           </ThemeProvider>
         </SessionAuth>
+        <Toaster />
       </body>
     </html>
   );
