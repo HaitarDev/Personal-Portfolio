@@ -4,10 +4,22 @@ import { Separator } from "@/components/ui/separator";
 import { aboutMe, expertise } from "@/lib/aboutMeInfo";
 
 import HomeShowProjects from "./_component/HomeShowProjects";
+import HomeShowPosts from "./_component/HomeShowPosts";
 
-export default function Home() {
+import prisma from "@/lib/prisma";
+
+export default async function Home() {
+  const latestPosts = await prisma.post.findMany({
+    where: {
+      published: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
   return (
-    <div className="relative p-24 max-w-screen-sm lg:max-w-screen-sm mx-auto ">
+    <div className="relative p-24 max-w-screen-sm lg:max-w-screen-sm mx-auto">
       <div className="flex flex-col gap-8">
         <div className="flex ">
           <div className="flex gap-4 items-center">
@@ -53,9 +65,11 @@ export default function Home() {
           <HomeShowProjects />
           <Separator />
         </HomeGrid>
-
-        {/* </HomeGrid> */}
         {/* Blogs */}
+        <HomeGrid title="Random posts">
+          <HomeShowPosts posts={latestPosts} />
+          <Separator />
+        </HomeGrid>
 
         {/* Social media */}
       </div>
