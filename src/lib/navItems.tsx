@@ -12,8 +12,8 @@ export const navItems = [
     icon: <Home />,
   },
   {
-    name: "Blog",
-    href: "/blog",
+    name: "Posts",
+    href: "/posts",
     icon: <Newspaper />,
   },
   {

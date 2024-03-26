@@ -63,25 +63,25 @@ export const projects: Project[] = [
   {
     id: 1,
     content: <ProjectOne />,
-    className: "md:col-span-2",
+    className: "",
     thumbnail: ["/13.jpg", "/noise.png", "/13.jpg"],
   },
   {
     id: 2,
     content: <ProjectTwo />,
-    className: "col-span-1",
+    className: "",
     thumbnail: ["/13.jpg", "/noise.png", "/13.jpg"],
   },
   {
     id: 3,
     content: <ProjectThree />,
-    className: "col-span-1",
+    className: "",
     thumbnail: ["/13.jpg", "/noise.png", "/13.jpg"],
   },
   {
     id: 4,
     content: <ProjectFour />,
-    className: "md:col-span-2",
+    className: "",
     thumbnail: ["/13.jpg", "/noise.png", "/13.jpg"],
   },
 ];

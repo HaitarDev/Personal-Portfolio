@@ -7,6 +7,7 @@ import HomeShowProjects from "./_component/HomeShowProjects";
 import HomeShowPosts from "./_component/HomeShowPosts";
 
 import prisma from "@/lib/prisma";
+import ContactMe from "./_component/ContactMe";
 
 export default async function Home() {
   const latestPosts = await prisma.post.findMany({
@@ -71,7 +72,11 @@ export default async function Home() {
           <Separator />
         </HomeGrid>
 
-        {/* Social media */}
+        {/* Contact me  */}
+        <HomeGrid title="Contact me">
+          <ContactMe />
+          <Separator />
+        </HomeGrid>
       </div>
     </div>
   );
