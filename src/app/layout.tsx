@@ -7,6 +7,7 @@ import Sidebar from "@/components/Sidebar";
 import SessionAuth from "@/components/session-provider";
 
 import { Toaster } from "@/components/ui/toaster";
+import ModalProvider from "@/providers/ModalProvider";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <div className="min-h-screen flex relative ">
+              <ModalProvider />
               <Sidebar />
               <main className="min-h-screen w-full ">{children}</main>
             </div>

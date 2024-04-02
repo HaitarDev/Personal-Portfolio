@@ -1,12 +1,13 @@
 "use client";
 import { Project, projects } from "@/components/projects-ui";
-import SpringModal from "@/components/spring-modal";
 import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";
-import { useState } from "react";
-import ProjectImagesSlider from "./ProjectImagesSlider";
+import ProjectModal from "@/components/ProjectModal";
+import useProjectModal from "@/hooks/useProjectModal";
+import useShowProjectImages from "@/hooks/useShowProjectImages";
 
 function HomeShowProjects() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, setIsOpen } = useProjectModal();
+  const { addImages } = useShowProjectImages();
 
   const getRandomElements = (arr: Project[]) => {
     const randomIndex1 = Math.floor(Math.random() * arr.length);
@@ -21,19 +22,21 @@ function HomeShowProjects() {
 
   const newRandomArr = getRandomElements(projects);
 
+  const handleClickImage = (images: string[]) => {
+    addImages(images);
+    setIsOpen();
+  };
+
   return (
     <>
       {newRandomArr.map((item) => (
-        <div onClick={() => setIsOpen(true)} key={item.id}>
+        <div onClick={() => handleClickImage(item.thumbnail)} key={item.id}>
           <DirectionAwareHover
             className={item.className}
             imageUrl={item.thumbnail[0]}
           >
             {item.content}
           </DirectionAwareHover>
-          <SpringModal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <ProjectImagesSlider images={item.thumbnail} />
-          </SpringModal>
         </div>
       ))}
     </>

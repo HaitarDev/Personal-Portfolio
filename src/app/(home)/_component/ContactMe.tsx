@@ -32,7 +32,7 @@ function ContactMe() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {}
   return (
-    <div className="bg-primary-foreground rounded-lg p-4 space-y-1">
+    <div className="bg-primary-foreground rounded-lg p-4 space-y-">
       <p className="text-sm text-muted-foreground">
         I am always open to discuss new projects, creative ideas or
         opportunities to be part of your visions.
