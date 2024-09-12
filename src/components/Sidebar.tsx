@@ -15,7 +15,10 @@ function Sidebar() {
         <div
           className={cn(
             "hover:bg-slate-100 dark:hover:bg-slate-800 p-2 rounded-lg transition-colors duration-200",
-            { "dark:bg-slate-800 bg-slate-100": pathname === item.href }
+            {
+              "dark:bg-slate-800 bg-slate-100":
+                "/" + pathname.split("/")[1] === item.href,
+            }
           )}
           key={item.name}
         >
@@ -24,7 +27,8 @@ function Sidebar() {
               <Link
                 href={item.href ? item.href : ""}
                 className={cn("text-gray-500", {
-                  "text-indigo-600 ": pathname === item.href,
+                  "text-indigo-600 ":
+                    "/" + pathname.split("/")[1] === item.href,
                 })}
               >
                 {item.icon}

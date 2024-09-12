@@ -125,7 +125,6 @@ type DialogContent = {
   className?: string;
   style?: React.CSSProperties;
 };
-
 function DialogContent({ children, className, style }: DialogContent) {
   const { setIsOpen, isOpen, uniqueId, triggerRef } = useDialog();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -138,8 +137,7 @@ function DialogContent({ children, className, style }: DialogContent) {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsOpen(false);
-      }
-      if (event.key === "Tab") {
+      } else if (event.key === "Tab") {
         if (!firstFocusableElement || !lastFocusableElement) return;
 
         if (event.shiftKey) {
@@ -156,19 +154,23 @@ function DialogContent({ children, className, style }: DialogContent) {
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden"; // Prevent background scroll
+    }
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = ""; // Restore background scroll
     };
-  }, [setIsOpen, firstFocusableElement, lastFocusableElement]);
+  }, [isOpen, setIsOpen, firstFocusableElement, lastFocusableElement]);
 
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("overflow-hidden");
       const focusableElements = containerRef.current?.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
+
       if (focusableElements && focusableElements.length > 0) {
         setFirstFocusableElement(focusableElements[0] as HTMLElement);
         setLastFocusableElement(
@@ -177,7 +179,6 @@ function DialogContent({ children, className, style }: DialogContent) {
         (focusableElements[0] as HTMLElement).focus();
       }
     } else {
-      document.body.classList.remove("overflow-hidden");
       triggerRef.current?.focus();
     }
   }, [isOpen, triggerRef]);
@@ -192,7 +193,10 @@ function DialogContent({ children, className, style }: DialogContent) {
     <motion.div
       ref={containerRef}
       layoutId={`dialog-${uniqueId}`}
-      className={cn("overflow-hidden", className)}
+      className={cn(
+        "overflow-y-auto max-h-[80vh] rounded-lg", // Use Tailwind to manage overflow
+        className
+      )}
       style={style}
       role="dialog"
       aria-modal="true"

@@ -13,8 +13,6 @@ function HomeShowProjects() {
     const randomIndex1 = Math.floor(Math.random() * arr.length);
     let randomIndex2 = Math.floor(Math.random() * arr.length);
 
-    console.log(randomIndex1, randomIndex2);
-
     if (randomIndex1 == 0 && randomIndex2 == 0) {
       return [arr[randomIndex1]];
     }
@@ -37,7 +35,6 @@ function HomeShowProjects() {
   }, []);
 
   const newRandomArr = projects ? getRandomElements(projects) : null;
-  console.log(newRandomArr);
   return (
     <>
       {!newRandomArr && !isLoading ? (
